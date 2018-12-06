@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: imagerecon-deployment
+  labels:
+    app: imagerecon
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: imagerecon
+  template:
+    metadata:
+      labels:
+        app: imagerecon
+    spec:
+      containers:
+      - name: imagerecon
+        image: keras-app:latest
+        ports:
+        - containerPort: 2400 
