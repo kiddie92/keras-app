@@ -5,6 +5,7 @@
 # 	curl -X POST -F image=@dog.jpg 'http://localhost:5000/predict'
 
 # import the necessary packages
+import os
 from keras.applications import ResNet50
 from keras.preprocessing.image import img_to_array
 from keras.applications import imagenet_utils
@@ -13,6 +14,9 @@ import numpy as np
 import flask
 import io
 import tensorflow as tf
+
+#CPU 
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 # initialize our Flask application and the Keras model
 app = flask.Flask(__name__)
@@ -82,4 +86,5 @@ if __name__ == "__main__":
 	print(("* Loading Keras model and Flask starting server..."
 		"please wait until server has fully started"))
 	load_model()
-	app.run(host='0.0.0.0',port=2400)
+#       app.run(host='0.0.0.0',port=2400)
+	app.run(host='0.0.0.0',port=2400,threaded=True)
